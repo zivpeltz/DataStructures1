@@ -65,8 +65,10 @@ class AVLTree(object):
 			return self.root.left.search(key)
 		return self.root.right.search(key)
 
-	"""inserts a new node into the dictionary with corresponding key and value
+	def getBalanceFactor(self,node):
+		return node.left.height() - node.right.height()
 
+	"""inserts a new node into the dictionary with corresponding key and value
 	@type key: int
 	@pre: key currently does not appear in the dictionary
 	@param key: key of item that is to be inserted to self
@@ -78,6 +80,9 @@ class AVLTree(object):
 	"""
 	def insert(self, key, val, start="root"):
 		return -1
+
+	def treeRotation(self,NodeBF): #assume BF is either -2 or 2
+		if NodeBF == 2:
 
 
 	"""deletes node from the dictionary
@@ -103,7 +108,7 @@ class AVLTree(object):
 		return self.avl_to_array_rec(arr)
 
 	def avl_to_array_rec(self, arr):
-		if not self.is_real_node:
+		if not self.is_real_node():
 			return
 		self.left.avl_to_array_rec( arr)
 		arr.append((self.key,self.value))
@@ -117,7 +122,7 @@ class AVLTree(object):
 	@returns: the number of items in dictionary 
 	"""
 	def size(self):
-		return self.size()
+		return self.size
 
 
 	"""returns the root of the tree representing the dictionary
@@ -126,10 +131,10 @@ class AVLTree(object):
 	@returns: the root, None if the dictionary is empty
 	"""
 	def get_root(self):
-		return None
+		return self.root
 
 
-    """gets amir's suggestion of balance factor
+	"""gets amir's suggestion of balance factor
 
 	@returns: the number of nodes which have balance factor equals to 0 devided by the total number of nodes
 	"""
