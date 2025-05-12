@@ -76,24 +76,32 @@ class AVLTree(object):
     """
 
     def insert(self, key, val, start="root"):
-        self.size += 1
+        self.size += 1 #change size because we add a new node
+
+        #Edge case: tree is empty
         if self.root == None:
             self.root = self.create_fresh_node(key,val)
             self.max = self.root
             return 0
+        #Check from where to search and then commit search
         if start == "root":
             node = self.search_from_node(key, self.root)
         else:
             node = self.search_from_max(key)
 
+        #creation of new node
         new_key_node = self.create_fresh_node(key, val)
         new_key_node.parent = node
 
+        #decide which side son the new node should be
         if node.key < key:
             node.right = new_key_node
         else:
             node.left = new_key_node
 
+        #change max point if necessary
+        if(key > self.max.key or self.max == None):
+            self.max = new_key_node
 
         countRotations = 0
 
@@ -105,10 +113,12 @@ class AVLTree(object):
 
             if abs(curr_BF) < 2 and not height_change:
                 return countRotations
+
             elif abs(curr_BF) < 2 and height_change:
                 self.update_height(node)
                 node = node.parent
                 continue
+
             else:
                 self.update_height(node)
                 if curr_BF == -2:
@@ -116,6 +126,7 @@ class AVLTree(object):
                     if right_BF == -1:
                         self.left_rotate(node)
                         countRotations += 1
+
                     elif right_BF == 1:
                         self.right_rotate(node.right)
                         self.left_rotate(node)
@@ -127,16 +138,18 @@ class AVLTree(object):
                         self.left_rotate(node.left)
                         self.right_rotate(node)
                         countRotations += 2
+
                     elif left_BF == 1:
                         self.right_rotate(node)
                         countRotations += 1
-
         return countRotations
 
     def did_height_change(self, node):
+        '''checks for changed height in node'''
         return node.height != 1 + max(node.left.height, node.right.height)
 
     def create_fresh_node(self, key, value):
+        '''creates a new node object to insert'''
         node = AVLNode(key, value)
         node.right = self.virtual
         node.left = self.virtual
@@ -174,6 +187,7 @@ class AVLTree(object):
         return None
 
     def search_from_max(self, key):
+        '''commence search from max node'''
         node = self.max
         while node.key > key:
             node = node.parent
@@ -186,6 +200,7 @@ class AVLTree(object):
         return self.inorder_traversal()
 
     def inorder_traversal(self, node=None, result=None):
+        '''returns array after doing an inOrder scan of the tree'''
         if result is None:
             result = []
         if node is None:
