@@ -193,8 +193,23 @@ class AVLTree(object):
             node = node.parent
         return self.search_from_node(key, node)
 
+    """deletes node from the dictionary
+    
+    @type node: AVLNode
+    @pre: node is a real pointer to a node in self
+    @rtype: int
+    @returns: the number of rebalancing operation due to AVL rebalancing
+    """
+
     def delete(self, node):
         return -1
+
+
+    """returns an array representing dictionary
+     
+    @rtype: list
+    @returns: a sorted list according to key of touples (key, value) representing the data structure
+    """
 
     def avl_to_array(self):
         return self.inorder_traversal()
@@ -214,14 +229,32 @@ class AVLTree(object):
         self.inorder_traversal(node.right, result)
         return result
 
+    """returns the number of items in dictionary 
+
+    	@rtype: int
+    	@returns: the number of items in dictionary 
+    	"""
+
     def size(self):
         return self.size
+
+    """returns the root of the tree representing the dictionary
+
+    	@rtype: AVLNode
+    	@returns: the root, None if the dictionary is empty
+    	"""
 
     def get_root(self):
         return self.root
 
+    """gets amir's suggestion of balance factor
+
+       @returns: the number of nodes which have balance factor equals to 0 devided by the total number of nodes
+       """
+
     def get_amir_balance_factor(self):
         return "you still need to do this"
+
 
 
 
@@ -262,9 +295,24 @@ class AVLTree(object):
     def update_height(self, node):
         node.height = 1 + max(node.left.height, node.right.height)
 
+    def find_min(self,node):
+        '''finds min node of tree or subtree'''
+        while node.left.is_real_node():
+            node = node.left
+        return node
 
+    def find_successor(self,node):
+        '''finds successor of given node'''
+        if (node.right.is_real_node()):
+            return self.find_min(node.right)
 
+        parent = node.parent
 
+        while parent.is_real_node() and parent.right == node:
+            node = parent
+            parent = node.parent
+
+        return parent
 
 
     def __repr__(self):
