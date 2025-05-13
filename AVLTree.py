@@ -6,6 +6,7 @@
 
 
 """A class representing a node in an AVL tree"""
+from tabnanny import check
 
 
 class AVLNode(object):
@@ -35,6 +36,16 @@ class AVLNode(object):
     def is_real_node(self):
         return self.key is not None
 
+    def is_leaf(self):
+        return not self.left.is_real_node() and not self.right.is_real.node()
+
+    def children_count(self):
+        counter = 0
+        if self.left.is_real_node():
+            counter += 1
+        if self.right.is_real_node():
+            counter += 1
+        return counter
 
 """
 A class implementing an AVL tree.
@@ -204,6 +215,100 @@ class AVLTree(object):
     def delete(self, node):
         return -1
 
+    def delete_node(self , node):
+        ''' deletes node as done in BST and returns pointer to the parent of the node'''
+        self.size -= 1
+        if node.is_leaf(): #case 1: node is leaf
+            if node == self.root : #edge case: tree is only root
+                self.root = self.virtual
+                return self.virtual
+
+            parent = node.parent
+            side = self.check_side(parent,node)
+            if side == "left":
+                parent.left = self.virtual
+            else:
+                parent.right = self.virtual
+            return parent
+
+        if node.children_count() == 1: #case 2: one child
+            if self.root == node : #edge case: node is root
+                if node.left == self.virtual:
+                    self.root = node.right
+                    node.right.parent = self.virtual
+                else:
+                    self.root = node.left
+                    node.left.parent = self.virtual
+                return self.virtual
+
+            parent = node.parent
+            side = self.check_side(parent,node)
+            if node.left == self.virtual:
+                son = node.right
+            else:
+                son = node.left
+
+            self.bypass_node(parent,son,side)
+            return parent
+
+        #case 3: two children
+        #find successor and separate it from the tree
+        succ = self.find_successor(node)
+        if succ.parent == node:
+            # special case for optimization
+            succ.left = node.left
+            succ.parent = node.parent
+
+            if node.left != self.virtual:
+                node.left.parent = succ
+
+            if node == self.root:
+                self.root = succ
+            else:
+                side = self.check_side(node.parent, node)
+                self.bypass_node(node.parent, succ, side)
+            return succ.parent
+
+        son = succ.right
+        parent = succ.parent
+        side = self.check_side(parent, succ)
+        self.bypass_node(parent,son,side)
+        self.replace_node(node,succ)
+        return succ.parent
+
+
+    def check_side(self, parent, node):
+        '''checks which side son the given node is of a given parent'''
+        if (parent.left == node): return "left"
+        else: return "right"
+
+    def replace_node(self, x, y):
+        '''places a different node in the same place as another node'''
+        y.right = x.right
+        y.left = x.left
+        y.parent = x.parent
+
+        if x.left.is_real_node:
+            x.left.parent = y
+        if x.right.is_real_node:
+            x.right.parent = y
+
+        side = self.check_side(x.parent,x)
+        if side == "left":
+            x.parent.left = y
+        else:
+            x.parent.right = y
+
+
+    def bypass_node(self , parent, son, side):
+        '''Replaces node x with node y in the tree structure.
+        Assumes y is already disconnected from its original parent.'''
+        if side == "left":
+            parent.left = son
+        else:
+            parent.right = son
+        if son.is_real_node:
+            son.parent = parent
 
     """returns an array representing dictionary
      
