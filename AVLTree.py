@@ -6,7 +6,6 @@
 
 
 """A class representing a node in an AVL tree"""
-from tabnanny import check
 
 
 class AVLNode(object):
@@ -25,7 +24,7 @@ class AVLNode(object):
         self.right = None
         self.parent = None
         self.height = -1
-
+        self.bf = 0
 
     """returns whether self is not a virtual node 
 
@@ -37,7 +36,7 @@ class AVLNode(object):
         return self.key is not None
 
     def is_leaf(self):
-        return not self.left.is_real_node() and not self.right.is_real.node()
+        return (not self.left.is_real_node()) and (not self.right.is_real_node())
 
     def children_count(self):
         counter = 0
@@ -46,6 +45,7 @@ class AVLNode(object):
         if self.right.is_real_node():
             counter += 1
         return counter
+
 
 """
 A class implementing an AVL tree.
@@ -61,7 +61,9 @@ class AVLTree(object):
         self.root = None
         self.max = None
         self.size = 0
+        self.bf_zero_count = 0
         self.virtual = AVLNode(None, None)
+
 
     """searches for a node in the dictionary corresponding to the key
 
@@ -87,51 +89,48 @@ class AVLTree(object):
     """
 
     def insert(self, key, val, start="root"):
-        self.size += 1 #change size because we add a new node
-
-        #Edge case: tree is empty
+        self.size += 1  # change size because we add a new node
+        self.bf_zero_count += 1
+        # Edge case: tree is empty
         if self.root == None:
-            self.root = self.create_fresh_node(key,val)
+            self.root = self.create_fresh_node(key, val)
             self.max = self.root
             return 0
-        #Check from where to search and then commit search
+        # Check from where to search and then commit search
         if start == "root":
             node = self.search_from_node(key, self.root)
         else:
             node = self.search_from_max(key)
 
-        #creation of new node
+        # creation of new node
         new_key_node = self.create_fresh_node(key, val)
         new_key_node.parent = node
 
-        #decide which side son the new node should be
+        # decide which side son the new node should be
         if node.key < key:
             node.right = new_key_node
         else:
             node.left = new_key_node
 
-        #change max point if necessary
-        if(key > self.max.key or self.max == None):
+        # change max pointer if necessary
+        if (key > self.max.key or self.max == None):
             self.max = new_key_node
 
         countRotations = 0
 
         while node is not None:
-            curr_BF = self.compute_BF(node)
-            print(f"curr= {node.key}, BF = {curr_BF}")
-
             height_change = self.did_height_change(node)
+            self.update_height(node)
+            curr_BF = self.compute_BF(node)
 
             if abs(curr_BF) < 2 and not height_change:
                 return countRotations
 
             elif abs(curr_BF) < 2 and height_change:
-                self.update_height(node)
                 node = node.parent
                 continue
 
             else:
-                self.update_height(node)
                 if curr_BF == -2:
                     right_BF = self.compute_BF(node.right)
                     if right_BF == -1:
@@ -149,15 +148,34 @@ class AVLTree(object):
                         self.left_rotate(node.left)
                         self.right_rotate(node)
                         countRotations += 2
+                        return countRotations
+
 
                     elif left_BF == 1:
                         self.right_rotate(node)
                         countRotations += 1
+                        return countRotations
+
         return countRotations
 
     def did_height_change(self, node):
         '''checks for changed height in node'''
         return node.height != 1 + max(node.left.height, node.right.height)
+
+    def update_bf_zero(self,node, old_bf):
+        '''assumes height was changed'''
+        if node is not None and not node.is_real_node():
+            return
+        curr_bf = self.compute_BF(node)
+        print(f"this is the key = {node.key}")
+        print(f"old bf zero = {old_bf}")
+        print(f"curr bf zero = {curr_bf}")
+
+        if curr_bf != old_bf:
+            if old_bf == 0:
+                self.bf_zero_count -= 1
+            if curr_bf == 0:
+                self.bf_zero_count += 1
 
     def create_fresh_node(self, key, value):
         '''creates a new node object to insert'''
@@ -205,7 +223,7 @@ class AVLTree(object):
         return self.search_from_node(key, node)
 
     """deletes node from the dictionary
-    
+
     @type node: AVLNode
     @pre: node is a real pointer to a node in self
     @rtype: int
@@ -213,46 +231,91 @@ class AVLTree(object):
     """
 
     def delete(self, node):
-        return -1
+        node = self.delete_node(node)
+        if node is None : return 0
+        countRotations = 0
 
-    def delete_node(self , node):
+        while node is not None:
+            height_change = self.did_height_change(node)
+            self.update_height(node)
+            curr_BF = self.compute_BF(node)
+
+            if abs(curr_BF) < 2 and not height_change:
+                node = node.parent
+                continue
+
+            elif abs(curr_BF) < 2 and height_change:
+                node = node.parent
+                continue
+
+            else:
+                if curr_BF == -2:
+                    right_BF = self.compute_BF(node.right)
+                    if right_BF == -1 or right_BF == 0:
+                        self.left_rotate(node)
+                        countRotations += 1
+
+                    elif right_BF == 1:
+                        self.right_rotate(node.right)
+                        self.left_rotate(node)
+                        countRotations += 2
+
+                elif curr_BF == 2:
+                    left_BF = self.compute_BF(node.left)
+                    if left_BF == -1:
+                        self.left_rotate(node.left)
+                        self.right_rotate(node)
+                        countRotations += 2
+
+                    elif left_BF == 1 or left_BF == 0:
+                        self.right_rotate(node)
+                        countRotations += 1
+                node = node.parent
+        self.max = self.find_max()
+        return countRotations
+
+    def delete_node(self, node):
         ''' deletes node as done in BST and returns pointer to the parent of the node'''
+        self.helper = False
+        if node.bf == 0:
+            self.bf_zero_count -= 1
+
         self.size -= 1
-        if node.is_leaf(): #case 1: node is leaf
-            if node == self.root : #edge case: tree is only root
+        if node.is_leaf():  # case 1: node is leaf
+            if node == self.root:  # edge case: tree is only root
                 self.root = self.virtual
-                return self.virtual
+                return None
 
             parent = node.parent
-            side = self.check_side(parent,node)
+            side = self.check_side(parent, node)
             if side == "left":
                 parent.left = self.virtual
             else:
                 parent.right = self.virtual
             return parent
 
-        if node.children_count() == 1: #case 2: one child
-            if self.root == node : #edge case: node is root
+        if node.children_count() == 1:  # case 2: one child
+            if self.root == node:  # edge case: node is root
                 if node.left == self.virtual:
                     self.root = node.right
-                    node.right.parent = self.virtual
+                    node.right.parent = None
                 else:
                     self.root = node.left
-                    node.left.parent = self.virtual
-                return self.virtual
+                    node.left.parent = None
+                return None
 
             parent = node.parent
-            side = self.check_side(parent,node)
+            side = self.check_side(parent, node)
             if node.left == self.virtual:
                 son = node.right
             else:
                 son = node.left
 
-            self.bypass_node(parent,son,side)
+            self.bypass_node(parent, son, side)
             return parent
 
-        #case 3: two children
-        #find successor and separate it from the tree
+        # case 3: two children
+        # find successor and separate it from the tree
         succ = self.find_successor(node)
         if succ.parent == node:
             # special case for optimization
@@ -263,55 +326,79 @@ class AVLTree(object):
                 node.left.parent = succ
 
             if node == self.root:
+                #succ.bf = node.bf
                 self.root = succ
             else:
                 side = self.check_side(node.parent, node)
                 self.bypass_node(node.parent, succ, side)
-            return succ.parent
+
+            self.update_height(succ)
+            return succ
 
         son = succ.right
         parent = succ.parent
         side = self.check_side(parent, succ)
-        self.bypass_node(parent,son,side)
-        self.replace_node(node,succ)
-        return succ.parent
+        self.bypass_node(parent, son, side)
+        self.replace_node(node, succ)
+        if node == self.root:
+            self.root = succ
+        self.update_height(succ)
+        return parent
 
+
+    def find_max(self):
+        node = self.root
+
+        while node.right.is_real_node():
+            node = node.right
+        return node
 
     def check_side(self, parent, node):
-        '''checks which side son the given node is of a given parent'''
-        if (parent.left == node): return "left"
-        else: return "right"
+        '''checks which side son of the given node is of a given parent'''
+        if (parent.left == node):
+            return "left"
+        else:
+            return "right"
 
     def replace_node(self, x, y):
         '''places a different node in the same place as another node'''
         y.right = x.right
         y.left = x.left
         y.parent = x.parent
+        #y.height = x.height
+        #y.bf = x.bf
 
-        if x.left.is_real_node:
+        if x.left.is_real_node():
             x.left.parent = y
-        if x.right.is_real_node:
+        if x.right.is_real_node():
             x.right.parent = y
 
-        side = self.check_side(x.parent,x)
-        if side == "left":
-            x.parent.left = y
-        else:
-            x.parent.right = y
+        if self.root != x:
+            side = self.check_side(x.parent, x)
+            if side == "left":
+                x.parent.left = y
+            else:
+                x.parent.right = y
 
 
-    def bypass_node(self , parent, son, side):
+    def bypass_node(self, parent, son, side):
         '''Replaces node x with node y in the tree structure.
         Assumes y is already disconnected from its original parent.'''
         if side == "left":
+
             parent.left = son
         else:
             parent.right = son
-        if son.is_real_node:
+
+
+        if son.is_real_node():
             son.parent = parent
+            #self.update_height(son)  # height of the child might have changed
+
+        #self.update_height(parent)  # parent definitely changed
 
     """returns an array representing dictionary
-     
+
     @rtype: list
     @returns: a sorted list according to key of touples (key, value) representing the data structure
     """
@@ -330,7 +417,7 @@ class AVLTree(object):
             return result
 
         self.inorder_traversal(node.left, result)
-        result.append((node.key, node.value))
+        result.append((node.key, node.value,node.bf))
         self.inorder_traversal(node.right, result)
         return result
 
@@ -358,10 +445,19 @@ class AVLTree(object):
        """
 
     def get_amir_balance_factor(self):
-        return "you still need to do this"
+        if self.size == 0:
+            return 0
+        return self.bf_zero_count / self.size
 
+    def making_sure(self):
+        arr = self.avl_to_array()
+        sum = 0
+        for item in arr:
+            if item[2] == 0:
+                sum+=1
 
-
+        print(f"supposed to be: {sum}")
+        print(f"got: {self.bf_zero_count}")
 
     def left_rotate(self, x):
         y = x.right
@@ -397,16 +493,20 @@ class AVLTree(object):
         self.update_height(x)
         self.update_height(y)
 
-    def update_height(self, node):
-        node.height = 1 + max(node.left.height, node.right.height)
 
-    def find_min(self,node):
+    def update_height(self, node):
+        old_bf = node.bf
+        node.height = 1 + max(node.left.height, node.right.height)
+        node.bf = self.compute_BF(node)
+        self.update_bf_zero(node,old_bf)
+
+    def find_min(self, node):
         '''finds min node of tree or subtree'''
         while node.left.is_real_node():
             node = node.left
         return node
 
-    def find_successor(self,node):
+    def find_successor(self, node):
         '''finds successor of given node'''
         if (node.right.is_real_node()):
             return self.find_min(node.right)
@@ -418,7 +518,6 @@ class AVLTree(object):
             parent = node.parent
 
         return parent
-
 
     def __repr__(self):
         def printree(root):
@@ -460,31 +559,48 @@ class AVLTree(object):
 
 
 def main():
-    print("=== AVL Tree Demo ===")
+    import random
+
+    print("=== Big-Tree AVL Sanity Check ===")
     tree = AVLTree()
 
-    keys_to_insert = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15 ,16 ,17 ,80]
-    print(f"Inserting keys: {keys_to_insert}\n")
+    # 1) Generate 50 unique random keys in [1..200]
+    keys = random.sample(range(1, 1001), 20)
+    print(f"Inserting {len(keys)} keys…")
+    print(keys, "\n")
 
-    for key in keys_to_insert:
-        print(f"\nInserting ({key}, 'val{key}'):")
-        rotations = tree.insert(key, f"val{key}")
-        print(f"Rotations performed: {rotations}")
-        print("Current tree structure:")
+    # 2) INSERT phase
+    for k in keys:
+        rotations = tree.insert(k, f"val{k}")
+        # optional: print(f"Inserted {k}, rotations={rotations}")
+    print("After insertions:")
+    print(" - size:", tree.size)
+    print(" - bf_zero_count:", tree.get_amir_balance_factor())
+    print(" - inorder (key, bf):", [(k, bf) for k,_,bf in tree.avl_to_array()])
+    print()
+
+
+    # 4) DELETE phase (shuffle keys)
+    random.shuffle(keys)
+    print("Deleting all keys in random order…")
+    for k in keys[0:10]:
+        print(f"deleting this node:{k}")
         print(tree)
+        node = tree.search(k)
+        rotations = tree.delete(node)
+        tree.making_sure()
 
-    print("\n=== Final Tree Structure ===")
+
+        # optional: print(f"Deleted {k}, rotations={rotations}")
     print(tree)
+    print("After deletions:")
+    print(" - size:", tree.size)
+    print(" - bf_zero amount:", tree.bf_zero_count)
+    print(" - bf_zero_count:", tree.get_amir_balance_factor())
+    print(" - inorder:", tree.avl_to_array())  # should be empty
+    print("\nAll invariants held if no errors above.")
 
-    print("\n=== Inorder Traversal (Sorted key-value pairs) ===")
-    print(tree.avl_to_array())
 
-    print("\n=== Root of the Tree ===")
-    print(f"Root Key: {tree.get_root().key}, Value: {tree.get_root().value}")
-
-    print("\n=== Size of the Tree ===")
-    print(tree.size)
-    print(tree.get_amir_balance_factor())
 
 if __name__ == "__main__":
     main()
