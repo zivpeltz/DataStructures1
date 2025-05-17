@@ -60,9 +60,10 @@ class AVLTree(object):
     def __init__(self):
         self.root = None
         self.max = None
-        self.size = 0
+        self.num_of_nodes = 0
         self.bf_zero_count = 0
         self.virtual = AVLNode(None, None)
+        self.is_BST = False
 
 
     """searches for a node in the dictionary corresponding to the key
@@ -74,7 +75,10 @@ class AVLTree(object):
     """
 
     def search(self, key):
-        return self.search_from_node(key, self.root)
+        node = self.search_from_node(key, self.root)
+        if node.key == key:
+            return node
+        return None
 
     """inserts a new node into the dictionary with corresponding key and value
 
@@ -89,7 +93,7 @@ class AVLTree(object):
     """
 
     def insert(self, key, val, start="root"):
-        self.size += 1  # change size because we add a new node
+        self.num_of_nodes += 1  # change size because we add a new node
         self.bf_zero_count += 1
         # Edge case: tree is empty
         if self.root == None:
@@ -115,6 +119,9 @@ class AVLTree(object):
         # change max pointer if necessary
         if (key > self.max.key or self.max == None):
             self.max = new_key_node
+
+        if self.is_BST:
+            return
 
         countRotations = 0
 
@@ -167,10 +174,6 @@ class AVLTree(object):
         if node is not None and not node.is_real_node():
             return
         curr_bf = self.compute_BF(node)
-        print(f"this is the key = {node.key}")
-        print(f"old bf zero = {old_bf}")
-        print(f"curr bf zero = {curr_bf}")
-
         if curr_bf != old_bf:
             if old_bf == 0:
                 self.bf_zero_count -= 1
@@ -232,6 +235,10 @@ class AVLTree(object):
 
     def delete(self, node):
         node = self.delete_node(node)
+        self.max = self.find_max()
+        if self.is_BST:
+            return
+
         if node is None : return 0
         countRotations = 0
 
@@ -271,16 +278,14 @@ class AVLTree(object):
                         self.right_rotate(node)
                         countRotations += 1
                 node = node.parent
-        self.max = self.find_max()
         return countRotations
 
     def delete_node(self, node):
         ''' deletes node as done in BST and returns pointer to the parent of the node'''
-        self.helper = False
         if node.bf == 0:
             self.bf_zero_count -= 1
 
-        self.size -= 1
+        self.num_of_nodes -= 1
         if node.is_leaf():  # case 1: node is leaf
             if node == self.root:  # edge case: tree is only root
                 self.root = self.virtual
@@ -326,7 +331,6 @@ class AVLTree(object):
                 node.left.parent = succ
 
             if node == self.root:
-                #succ.bf = node.bf
                 self.root = succ
             else:
                 side = self.check_side(node.parent, node)
@@ -365,8 +369,6 @@ class AVLTree(object):
         y.right = x.right
         y.left = x.left
         y.parent = x.parent
-        #y.height = x.height
-        #y.bf = x.bf
 
         if x.left.is_real_node():
             x.left.parent = y
@@ -393,9 +395,7 @@ class AVLTree(object):
 
         if son.is_real_node():
             son.parent = parent
-            #self.update_height(son)  # height of the child might have changed
 
-        #self.update_height(parent)  # parent definitely changed
 
     """returns an array representing dictionary
 
@@ -417,7 +417,7 @@ class AVLTree(object):
             return result
 
         self.inorder_traversal(node.left, result)
-        result.append((node.key, node.value,node.bf))
+        result.append((node.key, node.value))
         self.inorder_traversal(node.right, result)
         return result
 
@@ -428,7 +428,7 @@ class AVLTree(object):
     	"""
 
     def size(self):
-        return self.size
+        return self.num_of_nodes
 
     """returns the root of the tree representing the dictionary
 
@@ -445,19 +445,10 @@ class AVLTree(object):
        """
 
     def get_amir_balance_factor(self):
-        if self.size == 0:
+        if self.num_of_nodes == 0:
             return 0
-        return self.bf_zero_count / self.size
+        return self.bf_zero_count / self.num_of_nodes
 
-    def making_sure(self):
-        arr = self.avl_to_array()
-        sum = 0
-        for item in arr:
-            if item[2] == 0:
-                sum+=1
-
-        print(f"supposed to be: {sum}")
-        print(f"got: {self.bf_zero_count}")
 
     def left_rotate(self, x):
         y = x.right
@@ -521,7 +512,7 @@ class AVLTree(object):
 
     def __repr__(self):
         def printree(root):
-            if not root:
+            if not root or root is self.virtual:
                 return ["#"]
 
             root_key = str(root.key)
@@ -557,48 +548,34 @@ class AVLTree(object):
 
         return '\n'.join(printree(self.root))
 
+    def _count_leaves_rec(self, node):
+        """Recursively counts leaf (עלה) nodes in the subtree rooted at *node*."""
+        if node is self.virtual:  # reached a virtual child
+            return 0
+        if node.is_leaf():  # both children are virtual ⇒ real leaf
+            return 1
+        # recurse on both sides
+        return self._count_leaves_rec(node.left) + self._count_leaves_rec(node.right)
+
+    # === public API ===
+    def count_leaves(self):
+        """
+        @rtype: int
+        @returns: the number of leaves (עלים) in the entire AVL tree (עץ).
+        """
+        if self.root is None or self.root is self.virtual:
+            return 0
+        return self._count_leaves_rec(self.root)
 
 def main():
-    import random
-
-    print("=== Big-Tree AVL Sanity Check ===")
     tree = AVLTree()
-
-    # 1) Generate 50 unique random keys in [1..200]
-    keys = random.sample(range(1, 1001), 20)
-    print(f"Inserting {len(keys)} keys…")
-    print(keys, "\n")
-
-    # 2) INSERT phase
-    for k in keys:
-        rotations = tree.insert(k, f"val{k}")
-        # optional: print(f"Inserted {k}, rotations={rotations}")
-    print("After insertions:")
-    print(" - size:", tree.size)
-    print(" - bf_zero_count:", tree.get_amir_balance_factor())
-    print(" - inorder (key, bf):", [(k, bf) for k,_,bf in tree.avl_to_array()])
-    print()
-
-
-    # 4) DELETE phase (shuffle keys)
-    random.shuffle(keys)
-    print("Deleting all keys in random order…")
-    for k in keys[0:10]:
-        print(f"deleting this node:{k}")
-        print(tree)
-        node = tree.search(k)
-        rotations = tree.delete(node)
-        tree.making_sure()
-
-
-        # optional: print(f"Deleted {k}, rotations={rotations}")
+    #tree.is_BST = True
+    arr = [1,2,3,4,5,80,89,6,7,10,11]
+    for key in arr:
+        tree.insert(key,"key")
     print(tree)
-    print("After deletions:")
-    print(" - size:", tree.size)
-    print(" - bf_zero amount:", tree.bf_zero_count)
-    print(" - bf_zero_count:", tree.get_amir_balance_factor())
-    print(" - inorder:", tree.avl_to_array())  # should be empty
-    print("\nAll invariants held if no errors above.")
+    print(tree.count_leaves())
+
 
 
 
