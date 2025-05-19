@@ -3,7 +3,9 @@
 # name1    - Ziv Peltz
 # id2      - 215975954
 # name2    - Lior Bornstein
-
+import sys
+import time
+import matplotlib.pyplot as plt
 
 """A class representing a node in an AVL tree"""
 
@@ -67,7 +69,6 @@ class AVLTree(object):
 
 
     """searches for a node in the dictionary corresponding to the key
-
     @type key: int
     @param key: a key to be searched
     @rtype: AVLNode
@@ -568,15 +569,62 @@ class AVLTree(object):
         return self._count_leaves_rec(self.root)
 
 def main():
-    tree = AVLTree()
-    #tree.is_BST = True
-    arr = [1,2,3,4,5,80,89,6,7,10,11]
-    for key in arr:
-        tree.insert(key,"key")
-    print(tree)
-    print(tree.count_leaves())
+    sys.setrecursionlimit(10 ** 6)
 
+    times = []  # Will become a 4x10 matrix
+    options = [(True, "root"), (True, "max"), (False, "root"), (False, "max")]
 
+    for BST_flag, insertFrom in options:
+        test = []
+        n = 50
+        for i in range(10):
+            tree = AVLTree()
+            tree.is_BST = BST_flag
+            arr = arr_maker(n, True)
+            t0 = time.perf_counter()
+            for j in range(n):
+                tree.insert(arr[j], "0", insertFrom)
+            tree.avl_to_array()
+            t1 = time.perf_counter()
+            elapsed = t1 - t0
+            test.append(elapsed)
+            print(
+                f"run: {i} , BST: {BST_flag}, length of array = {n}, sorted = True, insertFrom = {insertFrom}, time = {elapsed:.6f} sec")
+            n *= 2
+        times.append(test)
+
+    # Output the 4x10 matrix
+    for idx, row in enumerate(times):
+        print(f"Case {idx + 1}: {row}")
+
+    plot_results(times)
+
+def plot_results(times):
+    x_values = [50 * (2 ** i) for i in range(10)]
+    labels = [
+        "tree = BST, insertFrom='root'",
+        "tree = BST, insertFrom='max'",
+        "tree = AVL, insertFrom='root'",
+        "tree = AVL, insertFrom='max'"
+    ]
+    for i, label in enumerate(labels):
+        plt.plot(x_values, times[i], marker='o', label=label)
+
+    plt.xlabel("Array Size (n)")
+    plt.ylabel("Insertion Time (seconds)")
+    plt.title("AVL Tree Insertion Time")
+    plt.legend()
+    plt.grid(True)
+    plt.xticks(x_values)  # Ensure x-ticks show all tested sizes
+    plt.xscale("log", base=2)
+    plt.yscale("log")
+    plt.tight_layout()
+    plt.show()
+
+def arr_maker(length, sorted):
+    if sorted:
+        return [x + 1 for x in range(length)]
+    return [x for x in range(length,0,-1)]
 
 
 if __name__ == "__main__":
