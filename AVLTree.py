@@ -600,7 +600,8 @@ def main():
     plot_results(times)
 
 def plot_results(times):
-    x_values = [50 * (2 ** i) for i in range(10)]
+    x_values = [i for i in range(10)]  # constant spacing for plotting
+    actual_sizes = [50 * (2 ** i) for i in range(10)]  # real array sizes for labels
     labels = [
         "tree = BST, insertFrom='root'",
         "tree = BST, insertFrom='max'",
@@ -612,12 +613,26 @@ def plot_results(times):
 
     plt.xlabel("Array Size (n)")
     plt.ylabel("Insertion Time (seconds)")
-    plt.title("AVL Tree Insertion Time")
+    # Use a logarithmic scale for the y-axis to better separate close lower values
+    import numpy as np
+    min_time = min([min(row) for row in times])
+    max_time = max([max(row) for row in times])
+    # Avoid log(0) by setting a small positive minimum if needed
+    if min_time <= 0:
+        min_time = min([min([y for y in row if y > 0] or [1e-8]) for row in times])
+    plt.yscale("log")
+    # Set y-ticks at measured times for clarity, but only if they are unique and not too many
+    all_times = sorted(set([round(y, 8) for row in times for y in row if y > 0]))
+    if len(all_times) > 12:
+        # Pick up to 12 log-spaced ticks for clarity
+        y_ticks = np.logspace(np.log10(min_time), np.log10(max_time), num=12)
+        plt.yticks(y_ticks, [f"{v:.6g}" for v in y_ticks])
+    else:
+        plt.yticks(all_times, [str(v) for v in all_times])
+    plt.title("sorted array complexity comparison between trees")
     plt.legend()
     plt.grid(True)
-    plt.xticks(x_values)  # Ensure x-ticks show all tested sizes
-    plt.xscale("log", base=2)
-    plt.yscale("log")
+    plt.xticks(x_values, actual_sizes)  # set real sizes as tick labels
     plt.tight_layout()
     plt.show()
 
