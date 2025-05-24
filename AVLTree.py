@@ -124,47 +124,51 @@ class AVLTree(object):
         if self.is_BST:
             return
 
-        countRotations = 0
+        countfixes = 0
 
         while node is not None:
             height_change = self.did_height_change(node)
-            self.update_height(node)
+            if height_change:
+                self.update_height(node)
+                countfixes += 1
+
             curr_BF = self.compute_BF(node)
 
             if abs(curr_BF) < 2 and not height_change:
-                return countRotations
+                return countfixes
 
             elif abs(curr_BF) < 2 and height_change:
                 node = node.parent
                 continue
 
             else:
+                countfixes -= 1 #offset for the last update height
                 if curr_BF == -2:
                     right_BF = self.compute_BF(node.right)
                     if right_BF == -1:
                         self.left_rotate(node)
-                        countRotations += 1
+                        countfixes += 1
 
                     elif right_BF == 1:
                         self.right_rotate(node.right)
                         self.left_rotate(node)
-                        countRotations += 2
+                        countfixes += 2
 
                 elif curr_BF == 2:
                     left_BF = self.compute_BF(node.left)
                     if left_BF == -1:
                         self.left_rotate(node.left)
                         self.right_rotate(node)
-                        countRotations += 2
-                        return countRotations
+                        countfixes += 2
+                        return countfixes
 
 
                     elif left_BF == 1:
                         self.right_rotate(node)
-                        countRotations += 1
-                        return countRotations
+                        countfixes += 1
+                        return countfixes
 
-        return countRotations
+        return countfixes
 
     def did_height_change(self, node):
         '''checks for changed height in node'''
@@ -222,7 +226,7 @@ class AVLTree(object):
     def search_from_max(self, key):
         '''commence search from max node'''
         node = self.max
-        while node.key > key:
+        while node.key > key and node is not self.root:
             node = node.parent
         return self.search_from_node(key, node)
 
@@ -241,11 +245,13 @@ class AVLTree(object):
             return
 
         if node is None : return 0
-        countRotations = 0
+        countfixes = 0
 
         while node is not None:
             height_change = self.did_height_change(node)
-            self.update_height(node)
+            if height_change:
+                self.update_height(node)
+                countfixes += 1
             curr_BF = self.compute_BF(node)
 
             if abs(curr_BF) < 2 and not height_change:
@@ -257,29 +263,30 @@ class AVLTree(object):
                 continue
 
             else:
+                #countfixes -=1 #offset for the last update height
                 if curr_BF == -2:
                     right_BF = self.compute_BF(node.right)
                     if right_BF == -1 or right_BF == 0:
                         self.left_rotate(node)
-                        countRotations += 1
+                        countfixes += 1
 
                     elif right_BF == 1:
                         self.right_rotate(node.right)
                         self.left_rotate(node)
-                        countRotations += 2
+                        countfixes += 2
 
                 elif curr_BF == 2:
                     left_BF = self.compute_BF(node.left)
                     if left_BF == -1:
                         self.left_rotate(node.left)
                         self.right_rotate(node)
-                        countRotations += 2
+                        countfixes += 2
 
                     elif left_BF == 1 or left_BF == 0:
                         self.right_rotate(node)
-                        countRotations += 1
+                        countfixes += 1
                 node = node.parent
-        return countRotations
+        return countfixes
 
     def delete_node(self, node):
         ''' deletes node as done in BST and returns pointer to the parent of the node'''
@@ -468,6 +475,7 @@ class AVLTree(object):
         self.update_height(x)
         self.update_height(y)
 
+
     def right_rotate(self, x):
         y = x.left
         x.left = y.right
@@ -482,9 +490,9 @@ class AVLTree(object):
             x.parent.left = y
         y.right = x
         x.parent = y
+
         self.update_height(x)
         self.update_height(y)
-
 
     def update_height(self, node):
         old_bf = node.bf
@@ -569,6 +577,48 @@ class AVLTree(object):
         return self._count_leaves_rec(self.root)
 
 def main():
+    main_with_plot()
+
+
+def main_with_plot():
+    lst_size = 200
+    inversions = [x for x in range(200)]  # 0 to 200000 with step 1000
+    insertion_times = []
+
+    # Run the tests and collect timing data
+    for inversion_count in inversions:
+        arr = arr_maker(lst_size, True)
+        arr = array_with_inversions(arr, inversion_count)
+        tree = AVLTree()
+
+        # Measure insertion time
+        start_time = time.perf_counter()
+        for j in range(lst_size):
+            tree.insert(arr[j], "0", "root")
+        tree.avl_to_array()  # Ensure the tree is balanced and converted to an array
+        end_time = time.perf_counter()
+
+        elapsed_time = end_time - start_time
+        insertion_times.append(elapsed_time)
+        print(f"Number of inversions: {inversion_count}, Insertion time: {elapsed_time:.6f} seconds")
+
+    # Plot the results
+    plt.figure(figsize=(10, 6))
+    plt.plot(inversions, insertion_times, linestyle='-', color='blue')
+
+    # Add labels and title
+    plt.xlabel('Number of Inversions')
+    plt.ylabel('Insertion Time (seconds)')
+    plt.title('Relationship Between Array Inversions and AVL Tree Insertion Time')
+
+    # Add grid and improve layout
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    # Show the plot
+    plt.show()
+
+def experiment():
     sys.setrecursionlimit(10 ** 6)
 
     times = []  # Will become a 4x10 matrix
@@ -580,7 +630,7 @@ def main():
         for i in range(10):
             tree = AVLTree()
             tree.is_BST = BST_flag
-            arr = arr_maker(n, True)
+            arr = arr_maker(n, False)
             t0 = time.perf_counter()
             for j in range(n):
                 tree.insert(arr[j], "0", insertFrom)
@@ -589,7 +639,7 @@ def main():
             elapsed = t1 - t0
             test.append(elapsed)
             print(
-                f"run: {i} , BST: {BST_flag}, length of array = {n}, sorted = True, insertFrom = {insertFrom}, time = {elapsed:.6f} sec")
+                f"run: {i} , BST: {BST_flag}, length of array = {n}, sorted = False, insertFrom = {insertFrom}, time = {elapsed:.6f} sec")
             n += 2000
         times.append(test)
 
@@ -629,7 +679,7 @@ def plot_results(times):
         plt.yticks(y_ticks, [f"{v:.6g}" for v in y_ticks])
     else:
         plt.yticks(all_times, [str(v) for v in all_times])
-    plt.title("sorted array complexity comparison between trees")
+    plt.title("reverse-sorted array complexity comparison between trees")
     plt.legend()
     plt.grid(True)
     plt.xticks(x_values, actual_sizes)  # set real sizes as tick labels
@@ -641,6 +691,45 @@ def arr_maker(length, sorted):
         return [x + 1 for x in range(length)]
     return [x for x in range(length,0,-1)]
 
+
+def array_with_inversions(arr, k):
+    """
+    Given a sorted array and a number of inversions k,
+    returns a permutation of the array with exactly k inversions.
+    """
+    n = len(arr)
+    result = arr.copy()
+
+    # Check if k is within valid range
+    max_inversions = n * (n - 1) // 2
+    if k > max_inversions:
+        raise ValueError(f"Cannot create more than {max_inversions} inversions for array of length {n}")
+
+    # For k = max_inversions, simply reverse the array
+    if k == max_inversions:
+        return result[::-1]
+
+    # Process elements from right to left
+    i = n - 1
+    while k > 0 and i > 0:
+        # How many positions to the left can we move this element?
+        positions = min(k, i)
+
+        # Extract the value to move
+        value = result[i]
+
+        # Shift elements to the right to make room
+        for j in range(i, i - positions, -1):
+            result[j] = result[j - 1]
+
+        # Insert the value at its new position
+        result[i - positions] = value
+
+        # Update k and move to the next element
+        k -= positions
+        i -= 1
+
+    return result
 
 if __name__ == "__main__":
     main()
