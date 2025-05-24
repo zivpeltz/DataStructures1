@@ -577,39 +577,66 @@ class AVLTree(object):
         return self._count_leaves_rec(self.root)
 
 def main():
-    main_with_plot()
+    lst = [21, 29, 13, 32, 18, 26, 8, 33, 20, 28, 11, 31, 16, 24, 5, 30, 19, 27, 12, 25, 17, 23, 7, 22, 15, 10, 14, 3, 9, 6, 4, 2, 1]
+    tree = AVLTree()
+    for i in lst:
+        tree.insert(i, str(i), "root")
+    print("AVL Tree after inserting elements:")
+    print(tree)
+    print(tree.count_leaves())
 
 
 def main_with_plot():
-    lst_size = 200
-    inversions = [x for x in range(200)]  # 0 to 200000 with step 1000
+    lst_size = 200000
+    inversions = [x for x in range(0, 200000, 10000)]  # 0 to 500000 with step 10000
     insertion_times = []
 
     # Run the tests and collect timing data
     for inversion_count in inversions:
         arr = arr_maker(lst_size, True)
         arr = array_with_inversions(arr, inversion_count)
-        tree = AVLTree()
 
         # Measure insertion time
-        start_time = time.perf_counter()
-        for j in range(lst_size):
-            tree.insert(arr[j], "0", "root")
-        tree.avl_to_array()  # Ensure the tree is balanced and converted to an array
-        end_time = time.perf_counter()
-
-        elapsed_time = end_time - start_time
+        helper = []
+        for i in range(3):
+            tree = AVLTree()
+            start_time = time.perf_counter()
+            for j in range(lst_size):
+                tree.insert(arr[j], "0", "max")
+            tree.avl_to_array()  # Ensure the tree is balanced and converted to an array
+            end_time = time.perf_counter()
+            elapsed_time = end_time - start_time
+            helper.append(elapsed_time)
+            print(f"Number of inversions: {inversion_count}, Insertion time: {elapsed_time:.6f} seconds")
+        elapsed_time = min(helper)  # Use the minimum time from the 5 runs
         insertion_times.append(elapsed_time)
         print(f"Number of inversions: {inversion_count}, Insertion time: {elapsed_time:.6f} seconds")
 
+    # Calculate theoretical time (n*log((I/n)+2))
+    import numpy as np
+    theoretical_times = []
+    for I in inversions:
+        # Formula: n*log((I/n)+2)
+        if I == 0:
+            val = lst_size * np.log2(2)  # When I=0, avoid log(0)
+        else:
+            val = lst_size * np.log2((I/lst_size) + 2)
+        theoretical_times.append(val)
+
+    # Scale theoretical values to match experimental scale
+    scale_factor = max(insertion_times) / max(theoretical_times)
+    theoretical_times = [t * scale_factor for t in theoretical_times]
+
     # Plot the results
     plt.figure(figsize=(10, 6))
-    plt.plot(inversions, insertion_times, linestyle='-', color='blue')
+    plt.plot(inversions, insertion_times, linestyle='-', color='blue', label='Experimental Results')
+    plt.plot(inversions, theoretical_times, linestyle='--', color='red', label='Theoretical: n*log((I/n)+2)')
 
     # Add labels and title
-    plt.xlabel('Number of Inversions')
+    plt.xlabel('Number of Inversions (I)')
     plt.ylabel('Insertion Time (seconds)')
-    plt.title('Relationship Between Array Inversions and AVL Tree Insertion Time')
+    plt.title('AVL Tree Insertion Time vs Number of Inversions')
+    plt.legend()
 
     # Add grid and improve layout
     plt.grid(True, linestyle='--', alpha=0.7)
