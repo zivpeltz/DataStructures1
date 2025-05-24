@@ -576,7 +576,7 @@ def main():
 
     for BST_flag, insertFrom in options:
         test = []
-        n = 50
+        n = 2000
         for i in range(10):
             tree = AVLTree()
             tree.is_BST = BST_flag
@@ -590,7 +590,7 @@ def main():
             test.append(elapsed)
             print(
                 f"run: {i} , BST: {BST_flag}, length of array = {n}, sorted = True, insertFrom = {insertFrom}, time = {elapsed:.6f} sec")
-            n *= 2
+            n += 2000
         times.append(test)
 
     # Output the 4x10 matrix
@@ -601,7 +601,7 @@ def main():
 
 def plot_results(times):
     x_values = [i for i in range(10)]  # constant spacing for plotting
-    actual_sizes = [50 * (2 ** i) for i in range(10)]  # real array sizes for labels
+    actual_sizes = [2000*(i+1) for i in range(10)]  # real array sizes for labels
     labels = [
         "tree = BST, insertFrom='root'",
         "tree = BST, insertFrom='max'",
@@ -620,12 +620,12 @@ def plot_results(times):
     # Avoid log(0) by setting a small positive minimum if needed
     if min_time <= 0:
         min_time = min([min([y for y in row if y > 0] or [1e-8]) for row in times])
-    plt.yscale("log")
+    plt.yscale("linear")
     # Set y-ticks at measured times for clarity, but only if they are unique and not too many
     all_times = sorted(set([round(y, 8) for row in times for y in row if y > 0]))
     if len(all_times) > 12:
-        # Pick up to 12 log-spaced ticks for clarity
-        y_ticks = np.logspace(np.log10(min_time), np.log10(max_time), num=12)
+        # Pick up to 12 linearly spaced ticks for clarity
+        y_ticks = np.linspace(min_time, max_time, num=12)
         plt.yticks(y_ticks, [f"{v:.6g}" for v in y_ticks])
     else:
         plt.yticks(all_times, [str(v) for v in all_times])
