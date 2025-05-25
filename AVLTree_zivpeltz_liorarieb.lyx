@@ -804,6 +804,256 @@ l-1=n-(M+1)-1\underbrace{\ge}_{M\le\lceil\frac{n}{2}\rceil-1}\frac{n}{2}-1
 סעיף ד' חדש
 \end_layout
 
+\begin_layout Standard
+נבחר בעצי פיבונאצ'י להפריך את הטענה מכיוון שעצי פיבונאצ'י בהגדרתם הם העצים המאוזנים בעלי כמות הצמתים המינימלית עבור גובה מסוים.
+ כלומר כל עץ פיבונאצ'י מייצג את המקרה בו יש הכי פחות עלים והכי פחות צמתים בעלי 
+\begin_inset Formula $BF=0$
+\end_inset
+
+ כלומר את ה-
+\begin_inset Formula $\text{worst case}$
+\end_inset
+
+ לכל 
+\begin_inset Formula $\text{n}$
+\end_inset
+
+.
+ נוכיח באינדוקציה שבעצי פיבונאצ'י רק העלים הם בעלי 
+\begin_inset Formula $BF=0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+בסיס:
+
+\bar default
+ עבור 
+\begin_inset Formula $f_{1},f_{2}$
+\end_inset
+
+ הדבר מתקיים מכיוון שאלו עצים עם תא אחד ושני תאים בהתאמה.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+צעד:
+
+\bar default
+ נניח עבור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נוכיח עבור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n+1
+\lang hebrew
+:
+ מכיוון שראינו בכיתה שמתקיים:
+ 
+\begin_inset Formula $f_{n}=f_{n-1}+f_{n-2}$
+\end_inset
+
+ (כלומר בכל פעם בונים את העץ הבא בעזרת שני העצים הקודמים) וידוע שזה מתקיים עבור 
+\begin_inset Formula $f_{n}$
+\end_inset
+
+ נדע שזה מתקיים גם עבור 
+\begin_inset Formula $f_{n-1}$
+\end_inset
+
+,
+ לכן מאותה נוסחא מתקיים 
+\begin_inset Formula $f_{n+1}=f_{n}+f_{n-1}$
+\end_inset
+
+ ולכן הטענה מתקיימת גם עבור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $f_{n+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+נשים לב שמתקיים:
+ 
+\begin_inset Formula $L_{n}=fib(n+1)=f_{n+1}$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $L_{n}$
+\end_inset
+
+ היא מספר העלים של עץ הפיבונאצ'י ה
+\begin_inset Formula $\text{-n-}$
+\end_inset
+
+י ו-
+\begin_inset Formula $\text{fib}$
+\end_inset
+
+זה מספר הפיבונאצ'י המתאים.
+ בנוסף ידוע שלכל עץ פיבונאצ'י מתקיים:
+ 
+\begin_inset Formula $M_{n}=|f_{n}|=f_{n+3}-1=f_{n+2}+f_{n+1}-1$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $M$
+\end_inset
+
+ זה כמות הצמתים בעץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ (ראינו בהרצאה).
+ לכן מתקיים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\lim_{n\rightarrow\infty}b(f_{n})=\lim_{n\rightarrow\infty}\frac{L_{n}}{M_{n}}=\lim_{n\rightarrow\infty}\frac{f_{n+1}}{f_{n+3}-1}=\lim_{n\rightarrow\infty}\frac{f_{n+1}}{f_{n+2}+f_{n+1}-1}=\lim_{n\rightarrow\infty}\frac{\frac{f_{n+1}}{f_{n+1}}}{\frac{f_{n+2}+f_{n+1}-1}{f_{n+1}}}\stackrel{\lim_{k\rightarrow\infty}\frac{f_{k+1}}{f_{k}}=\Phi}{=}\frac{1}{\Phi+1-0}\approx\frac{1}{1.618+1}>\frac{1}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר מצאנו שבעבור עצי פיבנואצ'י שידוע מראש שהם מאוזנים,
+ מדד האיזון של אמיר שואף ל- 
+\begin_inset Formula $\frac{1}{2.618}$
+\end_inset
+
+ וזה גדול מחצי בסתירה לטענה.
+\end_layout
+
 \begin_layout Subsection*
 סעיף ד' ישן
 \end_layout
