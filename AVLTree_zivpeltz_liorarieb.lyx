@@ -1,0 +1,3101 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language hebrew
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008080
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style hebrew
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+מבני נתונים מטלה מעשית
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\end_layout
+
+\begin_layout Author
+זיו פלץ - 
+\lang english
+zivpeltz
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+-
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+212936199
+\numeric off
+ ,
+ ליאור בורנשטיין -
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+liorarieb
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+-
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+215975954
+\end_layout
+
+\begin_layout Part*
+חלק
+\family roman
+\series bold
+\shape up
+\size huge
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+א
+\end_layout
+
+\begin_layout Section*
+
+\numeric on
+1
+\numeric off
+.
+ 
+\bar under
+מדד איזון גלובאלי
+\end_layout
+
+\begin_layout Subsection*
+סעיף א'
+\end_layout
+
+\begin_layout Standard
+נשים לב במצב שתואר כלל הצמתים בעץ בעלי
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+BF
+\lang hebrew
+ 
+\numeric on
+0
+\numeric off
+,
+ כלומר כל העלים באותו גובה (אם היו עלים שנבדלים בגובהם אזי הייתה בוודאות צומת עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+BF
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\begin_inset Formula $\pm1$
+\end_inset
+
+) ולכל צומת פנימית יש 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+בנים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+ כלומר מדובר בעץ מושלם ולכן במצב כזה עבור גובה 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+h
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מתקיים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $n=2^{h+1}-1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection*
+סעיף ב'
+\family roman
+\series bold
+\shape up
+\size large
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\end_layout
+
+\begin_layout Standard
+ראשית,
+ נבחין שלכל עץ באשר הוא כל העלים יהיו בהכרח עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $BF=0$
+\end_inset
+
+,
+ כלומר נרצה למצוא מצב בו כל הצמתים הפנימיים בעלי 
+\begin_inset Formula $BF\neq0$
+\end_inset
+
+ ויש את מספר העלים הקטן ביותר,
+ נשים לב שהמצב הזה מתקיים עבור עץ שרוך (ימני או שמאלי).
+ עבור עץ שרוך יש רק עלה אחד וכל הצמתים הפנימיים עם מדד איזון שונה מאפס ולכן נקבל:
+ 
+\begin_inset Formula $b(T)=\frac{1}{n}$
+\end_inset
+
+.
+ להלן דוגמא של עץ כזה עם
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+5
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ צמתים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../../Downloads/pasted1.png
+	rotateOrigin center
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+נשים לב בכל צומת שהיא לא העלה יש מדד איזון שונה מאפס ולכן נקבל עבור העץ הנ
+\begin_inset Quotes drd
+\end_inset
+
+ל 
+\begin_inset Formula $b(T)=\frac{1}{5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+סעיף ג'
+\end_layout
+
+\begin_layout Standard
+נבנה עץ עם 
+\begin_inset Formula $n$
+\end_inset
+
+ צמתים:
+ תחילה נבחר 
+\begin_inset Formula $h$
+\end_inset
+
+ הכי גדול ככה שמתקיים 
+\begin_inset Formula $2^{h+1}-1\le\lceil\frac{n}{2}\rceil-1$
+\end_inset
+
+ כעת נבנה עץ מושלם בגובה 
+\begin_inset Formula $h$
+\end_inset
+
+ עם 
+\begin_inset Formula $M$
+\end_inset
+
+ צמתים,
+ נשים לב שמתקיים 
+\begin_inset Formula $M=2^{h+1}-1$
+\end_inset
+
+ מכיוון שזהו עץ מושלם ומאוזן כל הצמתים בו בעלי 
+\begin_inset Formula $BF=0$
+\end_inset
+
+.
+ כעת נבנה עץ שרוך בעל 
+\begin_inset Formula $l=n-(M+1)$
+\end_inset
+
+ צמתים ובסופו נוסיף את העץ המושלם בתור הבן של התא האחרון בעץ השרוך,
+ את עץ השרוך נתלה בצד מסוים של תא שורש.
+ מכיוון שלכל תא בעץ השרוך יש רק בן
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ אחד,
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ניתן להבין שלכל התאים יש 
+\begin_inset Formula $BF\neq0$
+\end_inset
+
+ ולכן סך התאים בעץ בעלי מקדם איזון אפס הם אלו של תת העץ המושלם,
+ כלומר יש 
+\begin_inset Formula $M$
+\end_inset
+
+ תאים כאלו.
+ לכן 
+\begin_inset Formula $b(T)=\frac{M}{n}=\frac{2^{h+1}-1}{n}=\ge\frac{\lceil\frac{n}{2}\rceil-1}{n}\ge\frac{1}{2}-\frac{1}{n}\ge\frac{1}{2}$
+\end_inset
+
+,
+ נשים לב שהעץ עצמו אינו מאוזן מכיוון שגובהו של העץ הוא לפחות 
+\begin_inset Formula $l$
+\end_inset
+
+ ומתקיים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+l-1=n-(M+1)-1\underbrace{\ge}_{M\le\lceil\frac{n}{2}\rceil-1}\frac{n}{2}-1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר הגובה של כלל העץ מקיים 
+\begin_inset Formula $h_{T}=\Omega(\frac{n}{2})=\Omega(n)$
+\end_inset
+
+ כלומר הוא לינארי ב-
+\begin_inset Formula $n$
+\end_inset
+
+ מכאן שגובה העץ לא לוגוריתמי ולכן גם לא מאוזן כנדרש.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ד' חדש
+\end_layout
+
+\begin_layout Subsection*
+סעיף ד' ישן
+\end_layout
+
+\begin_layout Standard
+נסתכל על עץ פיבונאצ'י 
+\begin_inset Formula $F_{3}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../../Documents/pasted3.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נשים לב שזה עץ מאוזן מכיוון שגובה העץ הוא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $[\log n]=[\log7]=3$
+\end_inset
+
+,
+ נשים לב בנוסף כי הצמתים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2,4,7
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ הם הצמתים היחידים עם מדד איזון אפס ולכן 
+\begin_inset Formula $b(T)=\frac{3}{7}<0.5$
+\end_inset
+
+ כלומר הפרכנו את הטענה.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ה'
+\end_layout
+
+\begin_layout Standard
+נגדיר מדד איזון חדש לעץ הנקרא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+BornsteinPeltz balance factor
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ המוגדר באופן הבא:
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+BPBF
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של צומת יהיה ממוצע בין מדד האיזון של אמיר עבור תת העץ שההבן הימני הוא שורשו וכנ
+\begin_inset Quotes drd
+\end_inset
+
+ל עבור הבן השמאלי כלומר:
+ 
+\begin_inset Formula $BPBF(node)=\frac{b(node.left)+b(node.right)}{2}$
+\end_inset
+
+ (עבור עלה נגדיר את המדד להיות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ועבור בן ריק נגדיר את המדד להיות
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+).
+ נגדיר את ה
+\lang english
+BPBF
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של עץ להיות ה-
+\lang english
+BPBF
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של השורש.
+ נשים לב שעבור המדד שהגדרנו שתי הדוגמאות שנתנו יניבו תוצאות יותר קרובות למצופה ממדד איזון כלומר ערך נמוך עבור עץ לא מאוזן וערך גבוה עבור עץ מאוזן.
+\end_layout
+
+\begin_layout Section*
+
+\numeric on
+2
+\numeric off
+.
+ 
+\bar under
+מיון הכנסה
+\end_layout
+
+\begin_layout Subsection*
+סעיף א'
+\end_layout
+
+\begin_layout Standard
+נשים לב שבכל מקרה נצטרך לעבור על כל המערך וזו כמובן עבודה של 
+\begin_inset Formula $O(n)$
+\end_inset
+
+.
+ נבחין בנוסף שבעת ביצוע המיון כמות ה
+\begin_inset Quotes drd
+\end_inset
+
+תיקונים
+\begin_inset Quotes drd
+\end_inset
+
+ שאנחנו עושים היא 
+\series bold
+בדיוק
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+I
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ כי בכל פעם נחליף שני איברים עד שהאיברים יהיו במקום הנכון.
+ כלומר עלות התיקונים היא 
+\begin_inset Formula $O(I)$
+\end_inset
+
+ ולכן סה
+\begin_inset Quotes drd
+\end_inset
+
+כ חסם עליון לסיבוכיות הפעולה הוא 
+\begin_inset Formula $n+I$
+\end_inset
+
+,
+ נשים לב כי זהו גם חסם תחתון מכיוון שכפי שהסברנו קודם בכל מקרה אנחנו עוברים על כל המערך ועושים בדיוק 
+\begin_inset Formula $I$
+\end_inset
+
+ עבודה בשביל לתקן את המערך.
+ כלומר חסם הדוק לסיבוכיות הפעולה הוא 
+\begin_inset Formula $\Theta(n+I)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ב'
+\end_layout
+
+\begin_layout Standard
+נשים לב שכמות ההיפוכים המינימלית היא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+,
+ זה בעבור מערך ממוין.
+ כמות ההיפוכים המקסימלית היא 
+\begin_inset Formula ${n \choose 2}$
+\end_inset
+
+ מצב זה יתקבל כאשר המערך ממוין 
+\begin_inset Quotes drd
+\end_inset
+
+הפוך
+\begin_inset Quotes drd
+\end_inset
+
+ (כלומר מהגדול לקטן) ולכן יש 
+\begin_inset Formula ${n \choose 2}$
+\end_inset
+
+ זוגות של אינדקסים אשר צריך להפוך.
+ כלומר במקרה הטוב האלגוריתם רץ ב-
+\begin_inset Formula $O(n)$
+\end_inset
+
+ ובמקרה הגרוע האלגוריתם רץ ב-
+\begin_inset Formula $O(n+I)=O(n+{n \choose 2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ג' 
+\end_layout
+
+\begin_layout Standard
+נשים לב שמהגדרת האלגוריתם לאחר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+k
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אירטציות של הלולאה החיצונית 
+\begin_inset Quotes drd
+\end_inset
+
+תיקנו
+\begin_inset Quotes drd
+\end_inset
+
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ האיברים הראשונים,
+ כלומר תת המערך של 
+\begin_inset Formula $k$
+\end_inset
+
+ האיברים הראשונים יהיה ממוין.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ד'
+\end_layout
+
+\begin_layout Standard
+שינוי האלגוריתם 
+\series bold
+אינו
+\series default
+ משפיע על סיבוכיות הזמן כי גם לאחר מציאת האינדקס בו צריך לשים את האיבר נותר עדיין 
+\begin_inset Quotes drd
+\end_inset
+
+לדחוף
+\begin_inset Quotes drd
+\end_inset
+
+ את כל האיברים החל מאינדקס ההכנסה צעד אחד קדימה (בשביל לפנות לו מקום) ולכן הסיבוכיות נותרת זהה.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ה'
+\end_layout
+
+\begin_layout Standard
+ראשית נשים לב,
+ שסיור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+in order
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+בכל בעץ בעל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+איברים מתבצע ב-
+\begin_inset Formula $O(n)$
+\end_inset
+
+ מכיוון שעוברים על כלל איברי העץ.
+ כעת נבין מה המקרה הגרוע והמקרה הטוב עבור העץ.
+ נבחין שהמקרה הגרוע הוא כאשר מתקבל עץ שרוך עבורו כל הכנסה היא 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ (ראינו בהרצאה) ומצב זה מתקבל כאשר המערך ממוין או ממוין הפוך (קטן לגדול או גדול לקטן),
+ לכן עבור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הכנסות נקבל סיבוכיות של 
+\begin_inset Formula $O(n^{2}+n)=O(n^{2})$
+\end_inset
+
+.
+ המקרה הטוב ביותר הוא כאשר העץ מאוזן וכל הכנסה היא 
+\begin_inset Formula $O(\log n)$
+\end_inset
+
+,
+ נשים לב שמצב כזה מתקיים כאשר המערך הוא מצורת
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+preOrder
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+של עץ חיפוש בינארי מאוזן,
+ לכן עבור המקרה הנ
+\begin_inset Quotes drd
+\end_inset
+
+ל נקבל סיבוכיות של 
+\begin_inset Formula $O(n\cdot\log n+n)=O(n\log n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ו'
+\end_layout
+
+\begin_layout Standard
+בעץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ מאוזן כל הכנסה היא 
+\begin_inset Formula $O(\log n)$
+\end_inset
+
+ בכל מקרה,
+ כלומר אין חשיבות לסדר האיברים במערך לכן עבור מערך בגודל 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נקבל סיבוכיות של 
+\begin_inset Formula $O(n\cdot\log n)$
+\end_inset
+
+ עבור ההכנסות ו-
+\begin_inset Formula $O(n)$
+\end_inset
+
+ עבור ההליכה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+inOrder
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+כלומר סה
+\begin_inset Quotes drd
+\end_inset
+
+כ 
+\begin_inset Formula $O(n\log n+n)=O(n\log n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ז'
+\end_layout
+
+\begin_layout Standard
+נתאר את המצב הגרוע והמצב הטוב.
+ נשים לב שהמצב הגרוע ביותר הוא עבור עץ שרוך שמאלי המתקבל במקרה של מערך הממוין הפוך,
+ עבורו כל הכנסה היא 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ מכיוון שהגובה הוא 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ והמצביע למקסימום מצביע תמיד לשורש לכן נתחיל מהשורש בכל פעם.
+ לכן עבור מערך בגודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נקבל סיבוכיות של 
+\begin_inset Formula $O(n^{2}+n)=O(n)$
+\end_inset
+
+.
+ המקרה הטוב הוא המקרה בו המערך ממוין ולכן העץ יהיה עץ שרוך ימני ופעולת הכנסה תתבצע ב-
+\begin_inset Formula $O(1)$
+\end_inset
+
+ מכיוון שיש לנו את המצביע לאיבר המקסימום שבכל מקרה הוא האיבר אליו צריך לחבר את האיבר שמכניסים,
+ כלומר עבור מערך בגודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\lang hebrew
+ נקבל סיבוכיות של 
+\begin_inset Formula $O(n\cdot1+n)=O(n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+סעיף ח'
+\end_layout
+
+\begin_layout Standard
+ראינו שעלות התיקונים בסדרה של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הכנסות לעץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+AVL
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+היא 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ אמורטייזד.
+ נשים לב כי בכל מקרה בעץ מאוזן גובה העץ יהיה 
+\begin_inset Formula $O(\log n)$
+\end_inset
+
+.
+ נסתכל על המצב הטוב בו המערך כבר ממוין ולכן בכל פעם שנצטרך להכניס איבר ההכנסה שלו תתבצע ב-
+\begin_inset Formula $O(1)$
+\end_inset
+
+ מכיוון שאנחנו משמרים מצביע למקסימום וזה יהיה האב של האיבר,
+ לכן עבור סדרה של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+n
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הכנסות,
+ מכיוון שראינו שחסם עליון לתיקונים זה 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ וחסם עליון להכנסות גם הוא 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ נקבל שהסיבוכיות של ההכנסות תהיה 
+\begin_inset Formula $O(n+n)=O(n)$
+\end_inset
+
+ ולכן הסיבוכיות של כל האלגוריתם הכולל גם את ההליכה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+in order
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+תהיה 
+\begin_inset Formula $O(n+n)=O(n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+המקרה הגרוע הוא כאשר המערך ממוין הפוך ולכן נתחיל בכל פעם מהמקסימום כלומר כל ההכנסות יתבצעו ב- 
+\begin_inset Formula $O(\log n)$
+\end_inset
+
+ ולכן סיבוכיות הפעולה תהיה 
+\begin_inset Formula $O(n\cdot\log n+n)=O(n\log n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Part*
+חלק ג'
+\end_layout
+
+\begin_layout Section*
+
+\numeric on
+1
+\numeric off
+.
+ 
+\bar under
+מדד איזון גלובאלי
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+יחס
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+מספר העלים
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+גודל עץ
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.429
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.417
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.394
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+33
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.389
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+54
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.386
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+34
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+88
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.385
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+55
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+143
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.384
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+89
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+232
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+0.382
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+144
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+376
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+
+\numeric on
+2
+\numeric off
+.
+ 
+\bar under
+מיון הכנסה
+\end_layout
+
+\begin_layout Subsection*
+א.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+השוואה בין הכנסות עבור קלטים ממוינים:
+\end_layout
+
+\begin_layout Standard
+להלן גרף המתאר את ההרצות שהתבצעו עבור קלטים ממוינים בסדר עולה עבור ארבעת העצים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/zivpe/Downloads/Figure_1.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+להלן גרפיקה המתארת הגדלה של הגרף הנ
+\begin_inset Quotes drd
+\end_inset
+
+ל כדי להבחין בהבדל התוצאות עבור עצי ה-
+\lang english
+AVL
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ועץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+BST
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם הכנסה מהמקסימום:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/zivpe/Downloads/Figure_2.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ניתן לשים לב שבעבור הכנסה לעץ בינארי עם מצביע על השורש הגרף הוא פרבולי (כלומר 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+) כמצופה,
+ עבור עצי ה
+\lang english
+AVL-
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+אין שינוי משמעותי בין הכנסה מהמקסימום והכנסה מהשורש אך ניתן לראות שעבור קלטים ארוכים יותר מיון מעץ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+AVL
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+נעשה באופן מהיר יותר כאשר החיפוש מתבצע מהמקסימום,
+ גם זה דבר שצפינו.
+ לבסוף ניתן לראות שעבור עץ בינארי עם מצביע למקסימום,
+ הכנסה מתבצעת באופן המהיר שניתן ולכן הגרף קרוב ללינארי 
+\begin_inset Formula $(n)$
+\end_inset
+
+ כמצופה.
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+השווה בין הכנסות עבור קלטים ממוינים בסדר יורד:
+\end_layout
+
+\begin_layout Standard
+להלן הגרפים של הניסוים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/zivpe/Downloads/Figure_3.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+וגרסא מוגדלת:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/zivpe/Downloads/Figure_4.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ניתן להבחין שבין עץ חיפוש בינארי עם מצביע למקסימום לבין עץ חיפוש בינארי עם מצביע לשורש אין הבדל ניכר מכיוון שעבור קלטים ממוינים בסדר הפוך שורש העץ הבינארי יהיה גם המקסימום לאורך כל ההרצה ולכן תוצאה זו מתיישרת עם ההנחה שלנו.
+ עבור עצי ה-
+\lang english
+AVL
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang hebrew
+ ניתן להבחין בשנית שאין שינוי משמעותי בין השניים.
+\end_layout
+
+\begin_layout Standard
+ניתן לראות שהניסויים שביצענו אוששו את הציפיות שלנו מהתנהגות העצים במצבים הנ
+\begin_inset Quotes drd
+\end_inset
+
+ל ולכן הן מתאימות לתשובות שלנו בחלק א'.
+\end_layout
+
+\begin_layout Subsection*
+ב'
+\end_layout
+
+\begin_layout Standard
+עשינו את הניסוי על מערך בגודל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+80,000
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+עם כמות משתנה של היפוכים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/zivpe/Downloads/logoritmi retzah.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ערכי האיקס מיוצגים בערכי לוג מטעמי נוחות.
+ ניתן לראות שאנחנו מקבלים גרף לוגוריתמי כמצופה.
+\end_layout
+
+\end_body
+\end_document
