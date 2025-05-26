@@ -68,6 +68,7 @@ class AVLTree(object):
         self.is_BST = False
 
 
+
     """searches for a node in the dictionary corresponding to the key
     @type key: int
     @param key: a key to be searched
@@ -77,9 +78,11 @@ class AVLTree(object):
 
     def search(self, key):
         node = self.search_from_node(key, self.root)
+        if node is None or node is self.virtual:
+            return None
         if node.key == key:
             return node
-        return None
+
 
     """inserts a new node into the dictionary with corresponding key and value
 
@@ -96,8 +99,9 @@ class AVLTree(object):
     def insert(self, key, val, start="root"):
         self.num_of_nodes += 1  # change size because we add a new node
         self.bf_zero_count += 1
+
         # Edge case: tree is empty
-        if self.root == None:
+        if self.root is None or not self.root.is_real_node():
             self.root = self.create_fresh_node(key, val)
             self.max = self.root
             return 0
@@ -128,8 +132,8 @@ class AVLTree(object):
 
         while node is not None:
             height_change = self.did_height_change(node)
+            self.update_height(node)
             if height_change:
-                self.update_height(node)
                 countfixes += 1
 
             curr_BF = self.compute_BF(node)
@@ -142,7 +146,7 @@ class AVLTree(object):
                 continue
 
             else:
-                countfixes -= 1 #offset for the last update height
+                countfixes -= 1  # offset for the last update height
                 if curr_BF == -2:
                     right_BF = self.compute_BF(node.right)
                     if right_BF == -1:
@@ -199,35 +203,47 @@ class AVLTree(object):
     def search_from_node(self, key, node):
         """
         Returns:
-            - If key exists in the tree: the node with node.key == key.
-            - Otherwise: the would-be parent under which to insert the new key
-              (i.e., its left or right child is self.virtual).
+          - If key exists: the node with node.key == key.
+          - Otherwise: the parent (אב) under which the new key should be attached
+            (i.e. where left or right is self.virtual).
         """
-        # Start from given node
+        # empty or virtual subtree → nothing to search here
+        if node is None or node is self.virtual:
+            return None
+
         current = node
-        while current is not self.virtual:
+        while True:
             if key == current.key:
                 return current
 
+            # go left subtree?
             if key < current.key:
-                # If left is a virtual node, we stop here
                 if current.left is self.virtual:
                     return current
                 current = current.left
-            else:  # key > current.key
-                # If right is a virtual node, we stop here
+
+            # go right subtree
+            else:
                 if current.right is self.virtual:
                     return current
                 current = current.right
 
-        # If we somehow started at a virtual root, just return None
-        return None
 
     def search_from_max(self, key):
-        '''commence search from max node'''
+        """
+        Starts at the max node and walks up until node.key <= key,
+        then delegates to search_from_node.
+        """
         node = self.max
-        while node.key > key and node is not self.root:
+
+        # if max isn’t set or we go past the root, use the true root
+        while node is not None and node is not self.virtual and node.key > key:
             node = node.parent
+
+        if node is None or node is self.virtual:
+            node = self.root
+
+        # now node is guaranteed real, hand off to the usual search
         return self.search_from_node(key, node)
 
     """deletes node from the dictionary
@@ -249,8 +265,8 @@ class AVLTree(object):
 
         while node is not None:
             height_change = self.did_height_change(node)
+            self.update_height(node)
             if height_change:
-                self.update_height(node)
                 countfixes += 1
             curr_BF = self.compute_BF(node)
 
@@ -263,7 +279,6 @@ class AVLTree(object):
                 continue
 
             else:
-                #countfixes -=1 #offset for the last update height
                 if curr_BF == -2:
                     right_BF = self.compute_BF(node.right)
                     if right_BF == -1 or right_BF == 0:
@@ -359,9 +374,16 @@ class AVLTree(object):
 
 
     def find_max(self):
-        node = self.root
+        """
+        Returns the node with the largest key, or None if the tree is empty.
+        """
+        # empty tree or only virtual root?
+        if self.root is None or not self.root.is_real_node():
+            return None
 
-        while node.right.is_real_node():
+        node = self.root
+        # walk right until you hit a virtual (non-ריאלי) child
+        while node.right is not None and node.right.is_real_node():
             node = node.right
         return node
 
@@ -475,7 +497,6 @@ class AVLTree(object):
         self.update_height(x)
         self.update_height(y)
 
-
     def right_rotate(self, x):
         y = x.left
         x.left = y.right
@@ -490,9 +511,9 @@ class AVLTree(object):
             x.parent.left = y
         y.right = x
         x.parent = y
-
         self.update_height(x)
         self.update_height(y)
+
 
     def update_height(self, node):
         old_bf = node.bf
@@ -519,244 +540,7 @@ class AVLTree(object):
 
         return parent
 
-    def __repr__(self):
-        def printree(root):
-            if not root or root is self.virtual:
-                return ["#"]
-
-            root_key = str(root.key)
-            left, right = printree(root.left), printree(root.right)
-
-            lwid = len(left[-1])
-            rwid = len(right[-1])
-            rootwid = len(root_key)
-
-            result = [(lwid + 1) * " " + root_key + (rwid + 1) * " "]
-
-            ls = len(left[0].rstrip())
-            rs = len(right[0]) - len(right[0].lstrip())
-            result.append(ls * " " + (lwid - ls) * "_" + "/" + rootwid * " " + "\\" + rs * "_" + (rwid - rs) * " ")
-
-            for i in range(max(len(left), len(right))):
-                row = ""
-                if i < len(left):
-                    row += left[i]
-                else:
-                    row += lwid * " "
-
-                row += (rootwid + 2) * " "
-
-                if i < len(right):
-                    row += right[i]
-                else:
-                    row += rwid * " "
-
-                result.append(row)
-
-            return result
-
-        return '\n'.join(printree(self.root))
-
-    def _count_leaves_rec(self, node):
-        """Recursively counts leaf (עלה) nodes in the subtree rooted at *node*."""
-        if node is self.virtual:  # reached a virtual child
-            return 0
-        if node.is_leaf():  # both children are virtual ⇒ real leaf
-            return 1
-        # recurse on both sides
-        return self._count_leaves_rec(node.left) + self._count_leaves_rec(node.right)
-
-    # === public API ===
-    def count_leaves(self):
-        """
-        @rtype: int
-        @returns: the number of leaves (עלים) in the entire AVL tree (עץ).
-        """
-        if self.root is None or self.root is self.virtual:
-            return 0
-        return self._count_leaves_rec(self.root)
-
-def main():
-    lst = [21, 29, 13, 32, 18, 26, 8, 33, 20, 28, 11, 31, 16, 24, 5, 30, 19, 27, 12, 25, 17, 23, 7, 22, 15, 10, 14, 3, 9, 6, 4, 2, 1]
-    tree = AVLTree()
-    for i in lst:
-        tree.insert(i, str(i), "root")
-    print("AVL Tree after inserting elements:")
-    print(tree)
-    print(tree.count_leaves())
 
 
-def main_with_plot():
-    lst_size = 200000
-    inversions = [x for x in range(0, 200000, 10000)]  # 0 to 500000 with step 10000
-    insertion_times = []
-
-    # Run the tests and collect timing data
-    for inversion_count in inversions:
-        arr = arr_maker(lst_size, True)
-        arr = array_with_inversions(arr, inversion_count)
-
-        # Measure insertion time
-        helper = []
-        for i in range(3):
-            tree = AVLTree()
-            start_time = time.perf_counter()
-            for j in range(lst_size):
-                tree.insert(arr[j], "0", "max")
-            tree.avl_to_array()  # Ensure the tree is balanced and converted to an array
-            end_time = time.perf_counter()
-            elapsed_time = end_time - start_time
-            helper.append(elapsed_time)
-            print(f"Number of inversions: {inversion_count}, Insertion time: {elapsed_time:.6f} seconds")
-        elapsed_time = min(helper)  # Use the minimum time from the 5 runs
-        insertion_times.append(elapsed_time)
-        print(f"Number of inversions: {inversion_count}, Insertion time: {elapsed_time:.6f} seconds")
-
-    # Calculate theoretical time (n*log((I/n)+2))
-    import numpy as np
-    theoretical_times = []
-    for I in inversions:
-        # Formula: n*log((I/n)+2)
-        if I == 0:
-            val = lst_size * np.log2(2)  # When I=0, avoid log(0)
-        else:
-            val = lst_size * np.log2((I/lst_size) + 2)
-        theoretical_times.append(val)
-
-    # Scale theoretical values to match experimental scale
-    scale_factor = max(insertion_times) / max(theoretical_times)
-    theoretical_times = [t * scale_factor for t in theoretical_times]
-
-    # Plot the results
-    plt.figure(figsize=(10, 6))
-    plt.plot(inversions, insertion_times, linestyle='-', color='blue', label='Experimental Results')
-    plt.plot(inversions, theoretical_times, linestyle='--', color='red', label='Theoretical: n*log((I/n)+2)')
-
-    # Add labels and title
-    plt.xlabel('Number of Inversions (I)')
-    plt.ylabel('Insertion Time (seconds)')
-    plt.title('AVL Tree Insertion Time vs Number of Inversions')
-    plt.legend()
-
-    # Add grid and improve layout
-    plt.grid(True, linestyle='--', alpha=0.7)
-    plt.tight_layout()
-
-    # Show the plot
-    plt.show()
-
-def experiment():
-    sys.setrecursionlimit(10 ** 6)
-
-    times = []  # Will become a 4x10 matrix
-    options = [(True, "root"), (True, "max"), (False, "root"), (False, "max")]
-
-    for BST_flag, insertFrom in options:
-        test = []
-        n = 2000
-        for i in range(10):
-            tree = AVLTree()
-            tree.is_BST = BST_flag
-            arr = arr_maker(n, False)
-            t0 = time.perf_counter()
-            for j in range(n):
-                tree.insert(arr[j], "0", insertFrom)
-            tree.avl_to_array()
-            t1 = time.perf_counter()
-            elapsed = t1 - t0
-            test.append(elapsed)
-            print(
-                f"run: {i} , BST: {BST_flag}, length of array = {n}, sorted = False, insertFrom = {insertFrom}, time = {elapsed:.6f} sec")
-            n += 2000
-        times.append(test)
-
-    # Output the 4x10 matrix
-    for idx, row in enumerate(times):
-        print(f"Case {idx + 1}: {row}")
-
-    plot_results(times)
-
-def plot_results(times):
-    x_values = [i for i in range(10)]  # constant spacing for plotting
-    actual_sizes = [2000*(i+1) for i in range(10)]  # real array sizes for labels
-    labels = [
-        "tree = BST, insertFrom='root'",
-        "tree = BST, insertFrom='max'",
-        "tree = AVL, insertFrom='root'",
-        "tree = AVL, insertFrom='max'"
-    ]
-    for i, label in enumerate(labels):
-        plt.plot(x_values, times[i], marker='o', label=label)
-
-    plt.xlabel("Array Size (n)")
-    plt.ylabel("Insertion Time (seconds)")
-    # Use a logarithmic scale for the y-axis to better separate close lower values
-    import numpy as np
-    min_time = min([min(row) for row in times])
-    max_time = max([max(row) for row in times])
-    # Avoid log(0) by setting a small positive minimum if needed
-    if min_time <= 0:
-        min_time = min([min([y for y in row if y > 0] or [1e-8]) for row in times])
-    plt.yscale("linear")
-    # Set y-ticks at measured times for clarity, but only if they are unique and not too many
-    all_times = sorted(set([round(y, 8) for row in times for y in row if y > 0]))
-    if len(all_times) > 12:
-        # Pick up to 12 linearly spaced ticks for clarity
-        y_ticks = np.linspace(min_time, max_time, num=12)
-        plt.yticks(y_ticks, [f"{v:.6g}" for v in y_ticks])
-    else:
-        plt.yticks(all_times, [str(v) for v in all_times])
-    plt.title("reverse-sorted array complexity comparison between trees")
-    plt.legend()
-    plt.grid(True)
-    plt.xticks(x_values, actual_sizes)  # set real sizes as tick labels
-    plt.tight_layout()
-    plt.show()
-
-def arr_maker(length, sorted):
-    if sorted:
-        return [x + 1 for x in range(length)]
-    return [x for x in range(length,0,-1)]
 
 
-def array_with_inversions(arr, k):
-    """
-    Given a sorted array and a number of inversions k,
-    returns a permutation of the array with exactly k inversions.
-    """
-    n = len(arr)
-    result = arr.copy()
-
-    # Check if k is within valid range
-    max_inversions = n * (n - 1) // 2
-    if k > max_inversions:
-        raise ValueError(f"Cannot create more than {max_inversions} inversions for array of length {n}")
-
-    # For k = max_inversions, simply reverse the array
-    if k == max_inversions:
-        return result[::-1]
-
-    # Process elements from right to left
-    i = n - 1
-    while k > 0 and i > 0:
-        # How many positions to the left can we move this element?
-        positions = min(k, i)
-
-        # Extract the value to move
-        value = result[i]
-
-        # Shift elements to the right to make room
-        for j in range(i, i - positions, -1):
-            result[j] = result[j - 1]
-
-        # Insert the value at its new position
-        result[i - positions] = value
-
-        # Update k and move to the next element
-        k -= positions
-        i -= 1
-
-    return result
-
-if __name__ == "__main__":
-    main()
