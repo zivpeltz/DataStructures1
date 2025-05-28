@@ -470,37 +470,7 @@ BF
 \noun off
 \color none
 .
- כלומר מדובר בעץ מושלם ולכן במצב כזה עבור גובה 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\nospellcheck default
-\bar default
-\strikeout default
-\xout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang english
-h
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\nospellcheck off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang hebrew
- 
+ כלומר מדובר בעץ מושלם ולכן במצב כזה התנאי הוא ש
 \family default
 \series default
 \shape default
@@ -546,6 +516,65 @@ h
 \begin_inset Formula $n=2^{h+1}-1$
 \end_inset
 
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+כאשר גובה העץ הוא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\nospellcheck off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\nospellcheck default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang english
+h
+\lang hebrew
 .
  
 \end_layout
@@ -801,7 +830,7 @@ l-1=n-(M+1)-1\underbrace{\ge}_{M\le\lceil\frac{n}{2}\rceil-1}\frac{n}{2}-1
 \end_layout
 
 \begin_layout Subsection*
-סעיף ד' חדש
+סעיף ד'
 \end_layout
 
 \begin_layout Standard
@@ -836,7 +865,7 @@ l-1=n-(M+1)-1\underbrace{\ge}_{M\le\lceil\frac{n}{2}\rceil-1}\frac{n}{2}-1
 \begin_inset Formula $f_{1},f_{2}$
 \end_inset
 
- הדבר מתקיים מכיוון שאלו עצים עם תא אחד ושני תאים בהתאמה.
+ הדבר מתקיים מכיוון שאלו עצים עם צומת אחד ושני צמתים בהתאמה.
 \end_layout
 
 \begin_layout Standard
@@ -1009,7 +1038,7 @@ n+1
 זה מספר הפיבונאצ'י המתאים.
  בנוסף ידוע שלכל עץ פיבונאצ'י מתקיים:
  
-\begin_inset Formula $M_{n}=|f_{n}|=f_{n+3}-1=f_{n+2}+f_{n+1}-1$
+\begin_inset Formula $M_{n}=|f_{n}|=f_{n+2}+f_{n+1}+1$
 \end_inset
 
  כאשר 
@@ -1037,7 +1066,7 @@ n+1
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\lim_{n\rightarrow\infty}b(f_{n})=\lim_{n\rightarrow\infty}\frac{L_{n}}{M_{n}}=\lim_{n\rightarrow\infty}\frac{f_{n+1}}{f_{n+3}-1}=\lim_{n\rightarrow\infty}\frac{f_{n+1}}{f_{n+2}+f_{n+1}-1}=\lim_{n\rightarrow\infty}\frac{\frac{f_{n+1}}{f_{n+1}}}{\frac{f_{n+2}+f_{n+1}-1}{f_{n+1}}}\stackrel{\lim_{k\rightarrow\infty}\frac{f_{k+1}}{f_{k}}=\Phi}{=}\frac{1}{\Phi+1-0}\approx\frac{1}{1.618+1}>\frac{1}{2}
+\lim_{n\rightarrow\infty}b(f_{n})=\lim_{n\rightarrow\infty}\frac{L_{n}}{M_{n}}=\lim_{n\rightarrow\infty}\frac{f_{n+1}}{f_{n+2}+f_{n+1}+1}=\lim_{n\rightarrow\infty}\frac{\frac{f_{n+1}}{f_{n+1}}}{\frac{f_{n+2}+f_{n+1}+1}{f_{n+1}}}\stackrel{\lim_{k\rightarrow\infty}\frac{f_{k+1}}{f_{k}}=\Phi}{=}\frac{1}{\Phi+1+0}\approx\frac{1}{1.618+1}>\frac{1}{2}
 \]
 
 \end_inset
@@ -1052,112 +1081,6 @@ n+1
 \end_inset
 
  וזה גדול מחצי בסתירה לטענה.
-\end_layout
-
-\begin_layout Subsection*
-סעיף ד' ישן
-\end_layout
-
-\begin_layout Standard
-נסתכל על עץ פיבונאצ'י 
-\begin_inset Formula $F_{3}$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename ../../Documents/pasted3.png
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-נשים לב שזה עץ מאוזן מכיוון שגובה העץ הוא
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\nospellcheck off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
- 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\nospellcheck default
-\bar default
-\strikeout default
-\xout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-
-\begin_inset Formula $[\log n]=[\log7]=3$
-\end_inset
-
-,
- נשים לב בנוסף כי הצמתים
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\nospellcheck off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
- 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\numeric on
-\nospellcheck default
-\bar default
-\strikeout default
-\xout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-2,4,7
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\numeric off
-\nospellcheck off
-\bar no
-\strikeout off
-\xout off
-\uuline off
-\uwave off
-\noun off
-\color none
- הם הצמתים היחידים עם מדד איזון אפס ולכן 
-\begin_inset Formula $b(T)=\frac{3}{7}<0.5$
-\end_inset
-
- כלומר הפרכנו את הטענה.
 \end_layout
 
 \begin_layout Subsection*
@@ -1657,7 +1580,7 @@ k
 \begin_inset Quotes drd
 \end_inset
 
- 
+ את 
 \begin_inset Formula $k$
 \end_inset
 

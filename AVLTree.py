@@ -3,9 +3,6 @@
 # name1    - Ziv Peltz
 # id2      - 215975954
 # name2    - Lior Bornstein
-import sys
-import time
-import matplotlib.pyplot as plt
 
 """A class representing a node in an AVL tree"""
 
@@ -273,6 +270,7 @@ class AVLTree(object):
             if abs(curr_BF) < 2 and not height_change:
                 node = node.parent
                 continue
+
 
             elif abs(curr_BF) < 2 and height_change:
                 node = node.parent
